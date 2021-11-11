@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">problem_bank_frontend_android</string>
+    <string name="msg_token_fmt">토큰 : %s</string>
+</resources>

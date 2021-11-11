@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "85994527649",
+    "project_id": "meta-ojt",
+    "storage_bucket": "meta-ojt.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:85994527649:android:6107bb6e20b9a0b8f309e0",
+        "android_client_info": {
+          "package_name": "kr.ac.metasoft.problem_bank_frontend_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "85994527649-0emig72addp81lob5sqtf69a12ho6dgg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYhioJ9zVX1XC7VRkrE-KPWTspjtf715E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "85994527649-0emig72addp81lob5sqtf69a12ho6dgg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "85994527649-26qj3e5sdgqmqgk4padm6fkjp3c3464r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "kr.ac.metasoft.problemBankFrontendApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:85994527649:android:9a5649cab9aee9abf309e0",
+        "android_client_info": {
+          "package_name": "kr.co.metasoft.android.metaojt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "85994527649-0emig72addp81lob5sqtf69a12ho6dgg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYhioJ9zVX1XC7VRkrE-KPWTspjtf715E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "85994527649-0emig72addp81lob5sqtf69a12ho6dgg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "85994527649-26qj3e5sdgqmqgk4padm6fkjp3c3464r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "kr.ac.metasoft.problemBankFrontendApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

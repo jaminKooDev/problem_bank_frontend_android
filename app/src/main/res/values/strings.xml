@@ -1,4 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">problem_bank_frontend_android</string>
     <string name="msg_token_fmt">토큰 : %s</string>
+    <string name="base_url">http://192.168.0.200:20080</string>
 </resources>

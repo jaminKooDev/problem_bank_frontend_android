@@ -3,11 +3,76 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/dashboardFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="kr.co.metasoft.android.metaojt.DashboardFragment"
         android:label="fragment_dashboard"
         tools:layout="@layout/fragment_dashboard" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="kr.co.metasoft.android.metaojt.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_loginPasswordFragment"
+            app:destination="@id/loginPasswordFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_enter_anim"
+            app:popExitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_loginFragment_to_signUpPasswordFragment"
+            app:destination="@id/signUpPasswordFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_enter_anim"
+            app:popExitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginPasswordFragment"
+        android:name="kr.co.metasoft.android.metaojt.LoginPasswordFragment"
+        android:label="LoginPasswordFragment"
+        tools:layout="@layout/fragment_login_password">
+        <action
+            android:id="@+id/action_loginPasswordFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+        <argument
+            android:name="username"
+            app:argType="string"
+            android:defaultValue='""' />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpPasswordFragment"
+        android:name="kr.co.metasoft.android.metaojt.SignUpPasswordFragment"
+        android:label="SignUpPasswordFragment"
+        tools:layout="@layout/fragment_sign_up_password">
+        <action
+            android:id="@+id/action_signUpPasswordFragment_to_signUpNameFragment"
+            app:destination="@id/signUpNameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpNameFragment"
+        android:name="kr.co.metasoft.android.metaojt.SignUpNameFragment"
+        android:label="SignUpNameFragment"
+        tools:layout="@layout/fragment_sign_up_name">
+        <action
+            android:id="@+id/action_signUpNameFragment_to_signUpPhoneNumFragment"
+            app:destination="@id/signUpPhoneNumFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpPhoneNumFragment"
+        android:name="kr.co.metasoft.android.metaojt.SignUpPhoneNumFragment"
+        android:label="SignUpPhoneNumFragment"
+        tools:layout="@layout/fragment_sign_up_phone_num">
+        <action
+            android:id="@+id/action_signUpPhoneNumFragment_to_signUpGenderFragment"
+            app:destination="@id/signUpGenderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpGenderFragment"
+        android:name="kr.co.metasoft.android.metaojt.SignUpGenderFragment"
+        android:label="SignUpGenderFragment"
+        tools:layout="@layout/fragment_sign_up_gender"/>
 </navigation>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="홈"
+        android:id="@+id/menu_dashboard_home"
+        android:icon="@drawable/ic_baseline_home_24"/>
+    <item
+        android:title="뒤로"
+        android:id="@+id/menu_dashboard_back"
+        android:icon="@drawable/ic_baseline_arrow_back_ios_24"/>
+    <item
+        android:title="앞으로"
+        android:id="@+id/menu_dashboard_forward"
+        android:icon="@drawable/ic_baseline_arrow_forward_ios_24"/>
+    <item
+        android:title="수강기록"
+        android:id="@+id/menu_dashboard_history"
+        android:icon="@drawable/ic_baseline_book_24"/>
+    <item
+        android:title="설정"
+        android:id="@+id/menu_dashboard_settings"
+        android:icon="@drawable/ic_baseline_settings_24"/>
+</menu>

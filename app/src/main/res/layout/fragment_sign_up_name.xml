@@ -108,7 +108,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="@{viewModel::onContinueBtnClick}"
-                android:text="로그인"
+                android:text="계속하기"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 android:enabled="@{viewModel.isNameValidation() ? true : false}" />

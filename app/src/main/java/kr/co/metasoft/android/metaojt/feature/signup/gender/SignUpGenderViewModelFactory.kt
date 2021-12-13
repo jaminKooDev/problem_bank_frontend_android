@@ -1,8 +1,8 @@
-package kr.co.metasoft.android.metaojt
+package kr.co.metasoft.android.metaojt.feature.signup.gender
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import kr.co.metasoft.android.metaojt.api.ApiRepository
+import kr.co.metasoft.android.metaojt.model.network.ApiRepository
 
 class SignUpGenderViewModelFactory(
     private val repository: ApiRepository

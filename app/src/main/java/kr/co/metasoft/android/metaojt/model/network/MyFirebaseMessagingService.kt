@@ -1,4 +1,4 @@
-package kr.co.metasoft.android.metaojt
+package kr.co.metasoft.android.metaojt.model.network
 
 import android.util.Log
 import com.google.firebase.messaging.FirebaseMessagingService

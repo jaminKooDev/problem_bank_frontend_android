@@ -1,6 +1,6 @@
-package kr.co.metasoft.android.metaojt.api
+package kr.co.metasoft.android.metaojt.model.network
 
-import kr.co.metasoft.android.metaojt.NullOnEmptyConverterFactory
+import kr.co.metasoft.android.metaojt.model.network.api.ApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

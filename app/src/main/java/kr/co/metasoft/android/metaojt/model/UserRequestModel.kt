@@ -1,4 +1,4 @@
-package kr.co.metasoft.android.metaojt
+package kr.co.metasoft.android.metaojt.model
 
 import com.google.gson.annotations.SerializedName
 

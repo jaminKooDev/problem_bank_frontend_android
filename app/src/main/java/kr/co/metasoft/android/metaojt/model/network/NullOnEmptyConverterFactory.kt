@@ -1,4 +1,4 @@
-package kr.co.metasoft.android.metaojt
+package kr.co.metasoft.android.metaojt.model.network
 
 import okhttp3.ResponseBody
 import retrofit2.Converter
@@ -20,4 +20,4 @@ class NullOnEmptyConverterFactory : Converter.Factory() {
             } else delegate.convert(body)
         }
     }
-}
+    }

@@ -11,12 +11,14 @@
         <entry key="..\:/Users/metasoft/StudioProjects/problem_bank_frontend_android/app/src/main/res/layout/activity_login_password.xml" value="0.33" />
         <entry key="..\:/Users/metasoft/StudioProjects/problem_bank_frontend_android/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/metasoft/StudioProjects/problem_bank_frontend_android/app/src/main/res/layout/fragment_dashboard.xml" value="0.19166666666666668" />
-        <entry key="..\:/Users/metasoft/StudioProjects/problem_bank_frontend_android/app/src/main/res/layout/fragment_login.xml" value="0.22" />
+        <entry key="..\:/Users/metasoft/StudioProjects/problem_bank_frontend_android/app/src/main/res/layout/fragment_login.xml" value="0.2292225201072386" />
         <entry key="..\:/Users/metasoft/StudioProjects/problem_bank_frontend_android/app/src/main/res/layout/fragment_login_password.xml" value="0.25" />
+        <entry key="..\:/Users/metasoft/StudioProjects/problem_bank_frontend_android/app/src/main/res/layout/fragment_settings.xml" value="0.1" />
         <entry key="..\:/Users/metasoft/StudioProjects/problem_bank_frontend_android/app/src/main/res/layout/fragment_sign_up_gender.xml" value="0.34791666666666665" />
         <entry key="..\:/Users/metasoft/StudioProjects/problem_bank_frontend_android/app/src/main/res/layout/fragment_sign_up_name.xml" value="0.34791666666666665" />
         <entry key="..\:/Users/metasoft/StudioProjects/problem_bank_frontend_android/app/src/main/res/layout/fragment_sign_up_password.xml" value="0.28405572755417957" />
         <entry key="..\:/Users/metasoft/StudioProjects/problem_bank_frontend_android/app/src/main/res/layout/fragment_sign_up_phone_num.xml" value="0.25" />
+        <entry key="..\:/Users/metasoft/StudioProjects/problem_bank_frontend_android/app/src/main/res/menu/bottom_nav.xml" value="0.1" />
       </map>
     </option>
   </component>

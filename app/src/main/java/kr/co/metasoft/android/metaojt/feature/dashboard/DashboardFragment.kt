@@ -1,6 +1,7 @@
 package kr.co.metasoft.android.metaojt.feature.dashboard
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,11 +10,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebChromeClient
 import android.webkit.WebViewClient
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import kr.co.metasoft.android.metaojt.R
 import kr.co.metasoft.android.metaojt.model.network.ApiRepository
 import kr.co.metasoft.android.metaojt.databinding.FragmentDashboardBinding
+import kr.co.metasoft.android.metaojt.feature.settings.SettingsFragment
 import kr.co.metasoft.android.metaojt.global.EventObserver
 import kr.co.metasoft.android.metaojt.global.Preferences
 
@@ -36,12 +39,17 @@ class DashboardFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
+//        val settingsFragment = SettingsFragment()
+
+//        requireActivity().supportFragmentManager.beginTransaction().replace(R.id.fl_dashboard, settingsFragment).commit()
+
         webViewInit()
         binding.navbarDashboard.run {
             setOnItemSelectedListener {
                 when(it.itemId) {
                     R.id.menu_dashboard_home -> {
-                        Log.d("t", "home")
+                        Log.d("t",  "home")
+//                        requireActivity().supportFragmentManager.beginTransaction().replace(R.id.fl_dashboard, settingsFragment).commit()
                         true
                     }
                     R.id.menu_dashboard_forward -> {
@@ -60,6 +68,9 @@ class DashboardFragment : Fragment() {
                     }
                     R.id.menu_dashboard_settings -> {
                         Log.d("t", "settings")
+//                        binding.wvDashboard.loadUrl("javascript:document.getElementsByClassName(\"v-btn__content\")[0].click();")
+                        val action = DashboardFragmentDirections.actionDashboardFragmentToSettingsFragment()
+                        findNavController().navigate(action)
                         true
                     }
                     else -> {

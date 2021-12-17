@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:key="information_category"
+        android:title="내 정보">
+
+        <Preference
+            app:key="information"
+            app:title="student"/>
+
+        <SwitchPreferenceCompat
+            app:key="auto_login"
+            app:title="자동로그인"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="notifications_category"
+        app:title="알림설정">
+
+        <SwitchPreferenceCompat
+            app:key="push_notification"
+            app:title="푸시 알림"
+            app:summary="푸시 알림을 받으려면 체크해주세요"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="help_category"
+        app:title="문의">
+
+        <Preference
+            app:key="feedback"
+            app:summary="기술적인 문제를 보고하거나 새로운 기능을 제안하십시오"
+            app:title="피드백 보내기"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

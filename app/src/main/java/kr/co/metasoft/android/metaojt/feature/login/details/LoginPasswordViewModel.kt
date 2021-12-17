@@ -86,6 +86,7 @@ class LoginPasswordViewModel(
                 _isBtnLoading.postValue(false)
                 if (tokenValidation.code() == 200 && token.value != null) {
                     Preferences.setToken(_context, token.value!!)
+                    Preferences.setUsername(_context, loginId.value!!)
                     _navigationToDashboardEvent.value = Event(Unit)
                 } else {
                     Toast.makeText(_context, "로그인 처리 중 오류가 발생하였습니다.", Toast.LENGTH_LONG).show()

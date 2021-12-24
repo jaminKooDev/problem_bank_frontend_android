@@ -24,7 +24,15 @@ class ApiRepository {
         return RetrofitClient.getApiService().postSignUp(signUpModel)
     }
 
+    suspend fun postLogout(token: String) : Response<*> {
+        return RetrofitClient.getApiService().postLogout("Bearer $token")
+    }
+
     suspend fun getTokenValidation(token: String) : Response<*> {
-        return RetrofitClient.getApiService().getTokenValidation(token)
+        return RetrofitClient.getApiService().getTokenValidation("Bearer $token")
+    }
+
+    suspend fun getCode(id: Number) : Response<*> {
+        return RetrofitClient.getApiService().getCode(id)
     }
 }

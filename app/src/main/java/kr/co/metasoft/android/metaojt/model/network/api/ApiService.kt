@@ -2,6 +2,7 @@ package kr.co.metasoft.android.metaojt.model.network.api
 
 import kr.co.metasoft.android.metaojt.model.SignUpModel
 import kr.co.metasoft.android.metaojt.model.UserRequestModel
+import kr.co.metasoft.android.metaojt.model.network.CodeModel
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -23,8 +24,18 @@ interface ApiService {
         @Body signUpModel: SignUpModel
     ) : Response<*>
 
+    @POST("/api/logout")
+    suspend fun postLogout(
+        @Header("Authorization") token: String
+    ) : Response<*>
+
     @GET("/api")
     suspend fun getTokenValidation(
         @Header("Authorization") token: String
     ) : Response<*>
+
+    @GET("/api/common/codes/{id}")
+    suspend fun getCode(
+        @Path("id") id: Number
+    ) : Response<CodeModel>
 }

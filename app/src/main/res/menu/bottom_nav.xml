@@ -20,4 +20,20 @@
         android:title="설정"
         android:id="@+id/menu_dashboard_settings"
         android:icon="@drawable/ic_baseline_settings_24"/>
+<!--    <item-->
+<!--        android:title="메뉴"-->
+<!--        android:id="@+id/menu_dashboard_menu"-->
+<!--        android:icon="@drawable/ic_baseline_menu_24"/>-->
+<!--    <item-->
+<!--        android:title="홈"-->
+<!--        android:id="@+id/menu_dashboard_home"-->
+<!--        android:icon="@drawable/ic_baseline_home_24"/>-->
+<!--    <item-->
+<!--        android:title="수강기록"-->
+<!--        android:id="@+id/menu_dashboard_history"-->
+<!--        android:icon="@drawable/ic_baseline_book_24"/>-->
+<!--    <item-->
+<!--        android:title="설정"-->
+<!--        android:id="@+id/menu_dashboard_settings"-->
+<!--        android:icon="@drawable/ic_baseline_settings_24"/>-->
 </menu>

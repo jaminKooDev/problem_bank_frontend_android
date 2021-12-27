@@ -22,6 +22,8 @@ import kr.co.metasoft.android.metaojt.global.Preferences
 
 class DashboardFragment : Fragment() {
 
+    private lateinit var prefs: Preferences
+
     private lateinit var binding: FragmentDashboardBinding
     private lateinit var viewModel: DashboardViewModel
     private lateinit var viewModelFactory: DashboardViewModelFactory
@@ -31,8 +33,9 @@ class DashboardFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val application = requireNotNull(this.activity).application
         val repository = ApiRepository()
-        viewModelFactory = DashboardViewModelFactory(repository)
+        viewModelFactory = DashboardViewModelFactory(repository, application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(DashboardViewModel::class.java)
 
         binding = FragmentDashboardBinding.inflate(inflater, container, false)
@@ -52,16 +55,16 @@ class DashboardFragment : Fragment() {
 //                        requireActivity().supportFragmentManager.beginTransaction().replace(R.id.fl_dashboard, settingsFragment).commit()
                         true
                     }
-                    R.id.menu_dashboard_forward -> {
-                        if(binding.wvDashboard.canGoForward())
-                            binding.wvDashboard.goForward()
-                        false
-                    }
-                    R.id.menu_dashboard_back -> {
-                        if(binding.wvDashboard.canGoBack())
-                            binding.wvDashboard.goBack()
-                        false
-                    }
+//                    R.id.menu_dashboard_forward -> {
+//                        if(binding.wvDashboard.canGoForward())
+//                            binding.wvDashboard.goForward()
+//                        false
+//                    }
+//                    R.id.menu_dashboard_back -> {
+//                        if(binding.wvDashboard.canGoBack())
+//                            binding.wvDashboard.goBack()
+//                        false
+//                    }
                     R.id.menu_dashboard_history -> {
                         binding.wvDashboard.loadUrl("http://192.168.0.200:20080/personal/learning-history")
                         false
@@ -90,11 +93,18 @@ class DashboardFragment : Fragment() {
             val action = DashboardFragmentDirections.actionDashboardFragmentToLoginFragment()
             findNavController().navigate(action)
         })
+
+        viewModel.navigationBackEvent.observe(requireActivity(), EventObserver {
+            viewModel.logout(prefs.token)
+            val action = DashboardFragmentDirections.actionDashboardFragmentToLoginFragment()
+            findNavController().navigate(action)
+        })
     }
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun webViewInit() {
-        val token = Preferences.getToken(binding.root.context)
+        prefs = Preferences(binding.root.context)
+        val token = prefs.token
         viewModel.chkTokenValidation(token)
         binding.wvDashboard.settings.javaScriptEnabled = true
         binding.wvDashboard.settings.domStorageEnabled = true
@@ -111,6 +121,7 @@ class DashboardFragment : Fragment() {
         binding.wvDashboard.loadUrl(BASE_URL)
         binding.wvDashboard.loadDataWithBaseURL(BASE_URL, "<script type='text/javascript'>localStorage.setItem('token', '$token');window.location.replace('$BASE_URL');</script>", "text/html", "utf-8", null)
     }
+
 
     companion object {
         const val BASE_URL: String = "http://192.168.0.200:20080"

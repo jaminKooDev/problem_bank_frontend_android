@@ -1,16 +1,30 @@
 package kr.co.metasoft.android.metaojt.feature.dashboard
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import kr.co.metasoft.android.metaojt.model.network.ApiRepository
+import java.lang.reflect.InvocationTargetException
 
 class DashboardViewModelFactory(
-    private val repository: ApiRepository
-): ViewModelProvider.Factory {
+    private val repository: ApiRepository,
+    private val application: Application
+): ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(DashboardViewModel::class.java)) {
-            return DashboardViewModel(repository) as T
+        if (AndroidViewModel::class.java.isAssignableFrom(modelClass)) {
+            try {
+                return modelClass.getConstructor(ApiRepository::class.java, Application::class.java).newInstance(repository, application)
+            } catch (e: NoSuchMethodException) {
+                throw RuntimeException("Cannot create an instance of $modelClass", e)
+            } catch (e: IllegalAccessException) {
+                throw RuntimeException("Cannot create an instance of $modelClass", e)
+            } catch (e: InstantiationException) {
+                throw RuntimeException("Cannot create an instance of $modelClass", e)
+            } catch (e: InvocationTargetException) {
+                throw RuntimeException("Cannot create an instance of $modelClass", e)
+            }
         }
-        throw IllegalAccessException("Unknown ViewModel class")
+        return super.create(modelClass)
     }
 }

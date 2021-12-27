@@ -1,5 +1,6 @@
 package kr.co.metasoft.android.metaojt.feature.login.details
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.util.Log
 import android.view.View
@@ -15,6 +16,8 @@ import kr.co.metasoft.android.metaojt.global.Event
 import kr.co.metasoft.android.metaojt.global.Preferences
 import kr.co.metasoft.android.metaojt.global.ValidationPattern
 import kr.co.metasoft.android.metaojt.model.network.ApiRepository
+import kr.co.metasoft.android.metaojt.util.JWTUtils
+import org.json.JSONObject
 import java.lang.Exception
 import kotlin.coroutines.CoroutineContext
 
@@ -23,14 +26,17 @@ class LoginPasswordViewModel(
     application: Application
 ): AndroidViewModel(application) {
 
+    @SuppressLint("StaticFieldLeak")
     private val _context = getApplication<Application>().applicationContext
 
-    val TAG = "lpvm"
+    private val prefs = Preferences(_context)
+
+    private val TAG = "lpvm"
 
     val loginId = MutableLiveData<String>()
     val pwText = MutableLiveData<String>()
 
-    val token = MutableLiveData<String>()
+    private val token = MutableLiveData<String>()
 
     private val _pwValidationText = MutableLiveData<String>()
     val pwValidationText: LiveData<String> = _pwValidationText
@@ -73,29 +79,29 @@ class LoginPasswordViewModel(
     }
 
     fun onLoginBtnClick(view: View?) {
-        Log.d(TAG, "로그인버튼이 클릭되었습니다.")
-        Toast.makeText(_context, "로그인버튼이 클릭되었습니다.", Toast.LENGTH_LONG).show()
-
         scope.launch(Dispatchers.Main) {
+            _isBtnLoading.postValue(true)
             try {
-                _isBtnLoading.postValue(true)
-                val response = repository.postLogin(loginId.value ?: "", pwText.value ?: "")
-                Log.d(TAG, "${response.headers().get("authorization")}")
-                token.value = response.headers().get("authorization")
-                val tokenValidation = repository.getTokenValidation(token.value ?: "")
-                _isBtnLoading.postValue(false)
-                if (tokenValidation.code() == 200 && token.value != null) {
-                    Preferences.setToken(_context, token.value!!)
-                    Preferences.setUsername(_context, loginId.value!!)
+                // loginId 와 pwText 는 검증로직이 존제하기 때문에 값이 null 이 될 수 없음을 보장함.
+                val response = repository.postLogin(loginId.value!!, pwText.value!!)
+                token.value = response.headers().get("authorization")?.replace("Bearer ", "") ?: return@launch
+
+                // StatusCode 가 200이면 토큰이 유효함
+                if (repository.getTokenValidation(token.value!!).code() == 200) {
+                    prefs.token = token.value!!
+                    prefs.username = loginId.value!!
+                    JWTUtils.decoded(token.value!!)
+                    _isBtnLoading.postValue(false)
+//                    val jsonObject = JSONObject("Berear " + token.value!!)
+//                    Log.d("lpvm", "$jsonObject")
                     _navigationToDashboardEvent.value = Event(Unit)
-                } else {
-                    Toast.makeText(_context, "로그인 처리 중 오류가 발생하였습니다.", Toast.LENGTH_LONG).show()
                 }
             } catch (e: Exception) {
+                Toast.makeText(_context, "로그인 처리 중 오류가 발생하였습니다.", Toast.LENGTH_LONG).show()
                 e.printStackTrace()
             }
+            _isBtnLoading.postValue(false)
         }
-//        _navigationToDashboardEvent.value = Event(Unit)
     }
 
     fun onBackBtnClick(view: View?) {

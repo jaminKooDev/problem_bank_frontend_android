@@ -35,4 +35,12 @@ class ApiRepository {
     suspend fun getCode(id: Number) : Response<*> {
         return RetrofitClient.getApiService().getCode(id)
     }
+
+    suspend fun postAuth(userPhoneNumAuthModel: UserPhoneNumAuthModel): Response<UserPhoneNumAuthModel> {
+        return RetrofitClient.getApiService().postAuth(userPhoneNumAuthModel)
+    }
+
+    suspend fun postAuthVerify(userPhoneNumAuthModel: UserPhoneNumAuthModel): Response<UserPhoneNumAuthModel> {
+        return RetrofitClient.getApiService().postAuth(userPhoneNumAuthModel)
+    }
 }

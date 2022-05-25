@@ -3,6 +3,7 @@ package kr.co.metasoft.android.metaojt.model.network.api
 import kr.co.metasoft.android.metaojt.model.SignUpModel
 import kr.co.metasoft.android.metaojt.model.UserRequestModel
 import kr.co.metasoft.android.metaojt.model.network.CodeModel
+import kr.co.metasoft.android.metaojt.model.network.UserPhoneNumAuthModel
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -38,4 +39,14 @@ interface ApiService {
     suspend fun getCode(
         @Path("id") id: Number
     ) : Response<CodeModel>
+
+    @POST("/api/app/auth")
+    suspend fun postAuth(
+        @Body userPhoneNumAuthModel: UserPhoneNumAuthModel
+    ) : Response<UserPhoneNumAuthModel>
+
+    @POST("/api/app/auth/verify")
+    suspend fun postAuthVerify(
+        @Body userPhoneNumAuthModel: UserPhoneNumAuthModel
+    ) : Response<UserPhoneNumAuthModel>
 }

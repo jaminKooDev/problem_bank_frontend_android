@@ -41,6 +41,6 @@ class ApiRepository {
     }
 
     suspend fun postAuthVerify(userPhoneNumAuthModel: UserPhoneNumAuthModel): Response<UserPhoneNumAuthModel> {
-        return RetrofitClient.getApiService().postAuth(userPhoneNumAuthModel)
+        return RetrofitClient.getApiService().postAuthVerify(userPhoneNumAuthModel)
     }
 }

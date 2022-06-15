@@ -2,15 +2,18 @@ package kr.co.metasoft.android.metaojt.feature.dashboard
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.webkit.WebChromeClient
 import android.webkit.WebViewClient
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import kr.co.metasoft.android.metaojt.R
@@ -18,6 +21,7 @@ import kr.co.metasoft.android.metaojt.model.network.ApiRepository
 import kr.co.metasoft.android.metaojt.databinding.FragmentDashboardBinding
 import kr.co.metasoft.android.metaojt.feature.settings.SettingsFragment
 import kr.co.metasoft.android.metaojt.global.EventObserver
+import kr.co.metasoft.android.metaojt.global.NetworkConnection
 import kr.co.metasoft.android.metaojt.global.Preferences
 
 class DashboardFragment : Fragment() {
@@ -28,11 +32,14 @@ class DashboardFragment : Fragment() {
     private lateinit var viewModel: DashboardViewModel
     private lateinit var viewModelFactory: DashboardViewModelFactory
 
+    private lateinit var baseUrl: String
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        baseUrl = getString(R.string.base_url)
         val application = requireNotNull(this.activity).application
         val repository = ApiRepository()
         viewModelFactory = DashboardViewModelFactory(repository, application)
@@ -41,6 +48,15 @@ class DashboardFragment : Fragment() {
         binding = FragmentDashboardBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+
+        val connection = NetworkConnection(viewModel.getContext()!!)
+        connection.observe(requireActivity()) { isConnected ->
+            if (!isConnected) {
+                viewModel.onNetworkError()
+            }
+        }
+
+        requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_SECURE) // 캡쳐 방지
 
 //        val settingsFragment = SettingsFragment()
 
@@ -53,7 +69,7 @@ class DashboardFragment : Fragment() {
                     R.id.menu_dashboard_home -> {
                         Log.d("t",  "home")
 //                        requireActivity().supportFragmentManager.beginTransaction().replace(R.id.fl_dashboard, settingsFragment).commit()
-                        true
+                        false
                     }
 //                    R.id.menu_dashboard_forward -> {
 //                        if(binding.wvDashboard.canGoForward())
@@ -66,7 +82,7 @@ class DashboardFragment : Fragment() {
 //                        false
 //                    }
                     R.id.menu_dashboard_history -> {
-                        binding.wvDashboard.loadUrl("http://192.168.0.200:20080/personal/learning-history")
+                        binding.wvDashboard.loadUrl(baseUrl)
                         false
                     }
                     R.id.menu_dashboard_settings -> {
@@ -74,7 +90,7 @@ class DashboardFragment : Fragment() {
 //                        binding.wvDashboard.loadUrl("javascript:document.getElementsByClassName(\"v-btn__content\")[0].click();")
                         val action = DashboardFragmentDirections.actionDashboardFragmentToSettingsFragment()
                         findNavController().navigate(action)
-                        true
+                        false
                     }
                     else -> {
                         false
@@ -99,6 +115,11 @@ class DashboardFragment : Fragment() {
             val action = DashboardFragmentDirections.actionDashboardFragmentToLoginFragment()
             findNavController().navigate(action)
         })
+
+        viewModel.navigationNetworkErrorEvent.observe(requireActivity(), EventObserver {
+            val action = DashboardFragmentDirections.actionDashboardFragmentToNetworkErrorFragment()
+            findNavController().navigate(action)
+        })
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -118,12 +139,12 @@ class DashboardFragment : Fragment() {
             }
         }
         binding.wvDashboard.clearCache(true)
-        binding.wvDashboard.loadUrl(BASE_URL)
-        binding.wvDashboard.loadDataWithBaseURL(BASE_URL, "<script type='text/javascript'>localStorage.setItem('token', '$token');window.location.replace('$BASE_URL');</script>", "text/html", "utf-8", null)
+        binding.wvDashboard.loadUrl(baseUrl)
+        binding.wvDashboard.loadDataWithBaseURL(baseUrl, "<script type='text/javascript'>localStorage.setItem('stayToken', '$token');window.location.replace('$baseUrl');</script>", "text/html", "utf-8", null)
     }
 
 
-    companion object {
-        const val BASE_URL: String = "http://192.168.0.200:20080"
-    }
+//    companion object {
+//        const val BASE_URL: String = R.string.base_url
+//    }
 }

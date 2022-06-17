@@ -72,7 +72,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="시작해 볼까요?"
+                android:text="시작해볼까요?"
                 android:textColor="@color/black"
                 android:textSize="40dp" />
 

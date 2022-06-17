@@ -56,11 +56,11 @@ class LoginPasswordFragment : Fragment() {
             findNavController().navigate(action)
         })
 
-        viewModel.pwText.observe(requireActivity(), {
+        viewModel.pwText.observe(requireActivity()) {
             viewModel.setPwValidationText(viewModel.chkPwValidation(it))
-        })
+        }
 
-        viewModel.isBtnLoading.observe(requireActivity(), {
+        viewModel.isBtnLoading.observe(requireActivity()) {
             if (it) {
                 binding.btnLoginPasswordContinue.showProgress {
                     progressColor = Color.WHITE
@@ -68,7 +68,7 @@ class LoginPasswordFragment : Fragment() {
             } else {
                 binding.btnLoginPasswordContinue.hideProgress("로그인")
             }
-        })
+        }
 
     }
 }

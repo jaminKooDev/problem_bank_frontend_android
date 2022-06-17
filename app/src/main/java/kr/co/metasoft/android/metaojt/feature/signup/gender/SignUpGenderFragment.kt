@@ -59,14 +59,14 @@ class SignUpGenderFragment : Fragment() {
             findNavController().popBackStack()
         })
 
-        viewModel.isBtnLoading.observe(requireActivity(), {
-            if(it) {
+        viewModel.isBtnLoading.observe(requireActivity()) {
+            if (it) {
                 binding.btnSignupGenderContinue.showProgress {
                     progressColor = Color.WHITE
                 }
             } else {
                 binding.btnSignupGenderContinue.hideProgress("회원가입 완료하기")
             }
-        })
+        }
     }
 }

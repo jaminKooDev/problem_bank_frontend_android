@@ -2,7 +2,14 @@
 <resources>
     <string name="app_name">스터디잡스</string>
     <string name="msg_token_fmt">토큰 : %s</string>
-    <string name="base_url">http://192.168.0.200:20080</string>
+    <string name="base_url">http://learnner.studyjobs.co.kr</string>
+    <string name="server_url">http://backend.studyjobs.co.kr</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="network_error_fragment_title">네트워크 문제로 연결이 어렵습니다.</string>
+    <string name="network_error_fragment_content">서비스 이용에 불편을 드려 죄송합니다.\n잠시 후 다시 시도해 주세요.</string>
+    <string name="network_error_fragment_refresh">다시 시도하기</string>
+    <string name="network_error_fragment_to_web">모바일 웹으로 보기</string>
 </resources>

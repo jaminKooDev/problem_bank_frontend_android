@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_dashboardFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_networkErrorFragment"
+            app:destination="@id/networkErrorFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -77,12 +80,24 @@
         android:name="kr.co.metasoft.android.metaojt.feature.signup.phonenum.SignUpPhoneNumFragment"
         android:label="SignUpPhoneNumFragment"
         tools:layout="@layout/fragment_sign_up_phone_num">
-        <action
-            android:id="@+id/action_signUpPhoneNumFragment_to_signUpGenderFragment"
-            app:destination="@id/signUpGenderFragment" />
         <argument
             android:name="user"
             app:argType="string" />
+        <action
+            android:id="@+id/action_signUpPhoneNumFragment_to_signUpPhoneNumAuthFragment"
+            app:destination="@id/signUpPhoneNumAuthFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpPhoneNumAuthFragment"
+        android:name="kr.co.metasoft.android.metaojt.feature.signup.phonenum.SignUpPhoneNumAuthFragment"
+        android:label="SignUpPhoneNumAuthFragment"
+        tools:layout="@layout/fragment_sign_up_phone_num_auth">
+        <argument
+            android:name="user"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_signUpPhoneNumAuthFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpGenderFragment"
@@ -102,4 +117,9 @@
         android:id="@+id/settingsFragment"
         android:name="kr.co.metasoft.android.metaojt.feature.settings.SettingsFragment"
         android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/networkErrorFragment"
+        android:name="kr.co.metasoft.android.metaojt.feature.error.network.NetworkErrorFragment"
+        android:label="NetworkErrorFragment"
+        tools:layout="@layout/fragment_network_error"/>
 </navigation>

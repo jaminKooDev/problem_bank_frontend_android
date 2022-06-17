@@ -1,6 +1,7 @@
 package kr.co.metasoft.android.metaojt.feature.dashboard
 
 import android.app.Application
+import android.content.Context
 import android.util.Log
 import android.view.View
 import android.webkit.WebChromeClient
@@ -18,6 +19,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kr.co.metasoft.android.metaojt.global.Event
+import kr.co.metasoft.android.metaojt.global.NetworkConnection
 import kr.co.metasoft.android.metaojt.global.Preferences
 import kr.co.metasoft.android.metaojt.model.network.ApiRepository
 import java.lang.Exception
@@ -37,9 +39,16 @@ class DashboardViewModel(
     private val _navigationBackEvent = MutableLiveData<Event<Unit>>()
     val navigationBackEvent: LiveData<Event<Unit>> = _navigationBackEvent
 
+    private val _navigationNetworkErrorEvent = MutableLiveData<Event<Unit>>()
+    val navigationNetworkErrorEvent: LiveData<Event<Unit>> = _navigationNetworkErrorEvent
+
     private val parentJob = Job()
     private val coroutineContext : CoroutineContext get() = parentJob + Dispatchers.Default
     private val scope = CoroutineScope(coroutineContext)
+
+    fun getContext(): Context? {
+        return _context;
+    }
 
     fun chkTokenValidation(token: String?) {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(_context)
@@ -54,6 +63,10 @@ class DashboardViewModel(
                 }
             }
         }
+    }
+
+    fun onNetworkError() {
+        _navigationNetworkErrorEvent.value = Event(Unit)
     }
 
     fun onBackBtnClick(view: View?) {

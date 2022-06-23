@@ -16,6 +16,10 @@ data class UserModel (
     var phoneNum: String? = null,
 
     @SerializedName("gender")
-    var gender: String? = null
+    var gender: String? = null,
 
+    @SerializedName("userTypeCode")
+    var userTypeCode: Long = 4L,
+
+    var authId: Long? = null
 )

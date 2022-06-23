@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">스터디잡스</string>
     <string name="msg_token_fmt">토큰 : %s</string>
-    <string name="base_url">http://learnner.studyjobs.co.kr</string>
+    <string name="base_url">http://studyjobs.co.kr</string>
     <string name="server_url">http://backend.studyjobs.co.kr</string>
 
     <!-- TODO: Remove or change this placeholder text -->

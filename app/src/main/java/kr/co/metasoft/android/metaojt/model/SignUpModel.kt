@@ -8,7 +8,4 @@ data class SignUpModel(
 
     @SerializedName("personDto")
     var personDto: PersonModel,
-
-    @SerializedName("userTypeCode")
-    val userTypeCode: Number = 2
 )

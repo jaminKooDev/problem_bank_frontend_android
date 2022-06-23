@@ -19,8 +19,7 @@ class ApiRepository {
     }
 
     suspend fun postSignUp(userDto: UserModel, personDto: PersonModel) : Response<*> {
-        val userTypeCode: Number = 2
-        val signUpModel = SignUpModel(userDto, personDto, userTypeCode)
+        val signUpModel = SignUpModel(userDto, personDto)
         return RetrofitClient.getApiService().postSignUp(signUpModel)
     }
 

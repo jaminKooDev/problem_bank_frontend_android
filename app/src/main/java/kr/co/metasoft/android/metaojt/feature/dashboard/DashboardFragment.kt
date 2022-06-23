@@ -15,6 +15,7 @@ import android.webkit.WebViewClient
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import kr.co.metasoft.android.metaojt.R
 import kr.co.metasoft.android.metaojt.model.network.ApiRepository
@@ -51,18 +52,18 @@ class DashboardFragment : Fragment() {
 
         val connection = NetworkConnection(viewModel.getContext()!!)
         connection.observe(requireActivity()) { isConnected ->
-            if (!isConnected) {
+            if (isConnected) {
+                Log.d("fntl", "네트워크 연결됨")
+                webViewInit()
+            } else {
                 viewModel.onNetworkError()
             }
         }
-
         requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_SECURE) // 캡쳐 방지
 
 //        val settingsFragment = SettingsFragment()
 
 //        requireActivity().supportFragmentManager.beginTransaction().replace(R.id.fl_dashboard, settingsFragment).commit()
-
-        webViewInit()
         binding.navbarDashboard.run {
             setOnItemSelectedListener {
                 when(it.itemId) {
